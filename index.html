@@ -1,0 +1,2097 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediSense | Smart Healthcare</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5fbfa;
+            color: #16353c;
+        }
+
+        button,
+        input,
+        select {
+            font: inherit
+        }
+
+        button {
+            cursor: pointer;
+            border: 0
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit
+        }
+
+        :root {
+            --green: #087f76;
+            --green2: #10aa99;
+            --dark: #07343c;
+            --light: #e7f8f5;
+            --border: #dcebea;
+            --muted: #6c7f85;
+            --white: #fff;
+        }
+
+        nav {
+            height: 72px;
+            background: rgba(255, 255, 255, .97);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6%;
+            position: sticky;
+            top: 0;
+            z-index: 1000
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 23px;
+            font-weight: 800;
+            color: var(--green)
+        }
+
+        .logoBox {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--green2), var(--green));
+            color: white;
+            display: grid;
+            place-items: center;
+            font-size: 22px
+        }
+
+        .navlinks {
+            display: flex;
+            gap: 8px;
+            align-items: center
+        }
+
+        .navlinks a {
+            padding: 10px 13px;
+            border-radius: 9px;
+            font-weight: 700;
+            color: #60757b
+        }
+
+        .navlinks a:hover {
+            background: var(--light);
+            color: var(--green)
+        }
+
+        .login {
+            background: var(--green) !important;
+            color: white !important
+        }
+
+        .hero {
+            min-height: 550px;
+            padding: 75px 7%;
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 50px;
+            align-items: center;
+            background: linear-gradient(135deg, #e9faf6, #f4f9ff)
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 13px;
+            border-radius: 30px;
+            background: #d9f5ef;
+            color: var(--green);
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 17px
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 6vw, 68px);
+            line-height: 1.03;
+            letter-spacing: -3px;
+            margin-bottom: 20px
+        }
+
+        .hero h1 span {
+            color: var(--green)
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.7;
+            max-width: 650px;
+            margin-bottom: 25px
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+
+        .btn {
+            padding: 13px 18px;
+            border-radius: 10px;
+            font-weight: 700;
+            transition: .2s
+        }
+
+        .btn:hover {
+            transform: translateY(-2px)
+        }
+
+        .primary {
+            background: linear-gradient(135deg, var(--green2), var(--green));
+            color: white;
+            box-shadow: 0 10px 25px #087f7625
+        }
+
+        .outline {
+            background: white;
+            color: var(--green);
+            border: 1px solid var(--border)
+        }
+
+        .heroVisual {
+            height: 360px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            box-shadow: 0 25px 60px #17465018;
+            position: relative;
+            display: grid;
+            place-items: center
+        }
+
+        .heart {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            background: #e3f8f4;
+            display: grid;
+            place-items: center;
+            font-size: 75px;
+            animation: float 3s infinite ease-in-out
+        }
+
+        .float {
+            position: absolute;
+            background: white;
+            padding: 12px 15px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px #00000014;
+            font-size: 12px;
+            font-weight: bold
+        }
+
+        .a {
+            top: 25px;
+            left: 20px
+        }
+
+        .b {
+            top: 70px;
+            right: 20px
+        }
+
+        .c {
+            bottom: 25px;
+            right: 35px
+        }
+
+        @keyframes float {
+            50% {
+                transform: translateY(-12px)
+            }
+        }
+
+        .searchBox {
+            width: 86%;
+            max-width: 1050px;
+            margin: -25px auto 25px;
+            background: white;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            box-shadow: 0 15px 35px #17465010;
+            display: flex;
+            gap: 8px
+        }
+
+        .searchBox input {
+            flex: 1;
+            border: 0;
+            outline: 0;
+            padding: 10px;
+            font-size: 15px
+        }
+
+        section.content {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 55px 0
+        }
+
+        .heading {
+            margin-bottom: 25px
+        }
+
+        .heading h2 {
+            font-size: 34px;
+            margin-bottom: 7px
+        }
+
+        .heading p {
+            color: var(--muted)
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px
+        }
+
+        .card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 21px;
+            box-shadow: 0 8px 25px #17465008;
+            transition: .25s
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 35px #17465015
+        }
+
+        .icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: var(--light);
+            display: grid;
+            place-items: center;
+            font-size: 25px;
+            margin-bottom: 14px
+        }
+
+        .card h3 {
+            margin-bottom: 8px
+        }
+
+        .card p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.55
+        }
+
+        .benefit {
+            margin: 14px 0;
+            padding: 12px;
+            border-radius: 10px;
+            background: #effaf7;
+            font-size: 13px
+        }
+
+        .benefit b {
+            color: var(--green);
+            display: block;
+            margin-bottom: 4px
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 13px 0
+        }
+
+        .tag {
+            background: #f0f4f5;
+            padding: 6px 8px;
+            border-radius: 7px;
+            font-size: 11px;
+            font-weight: bold;
+            color: #61737a
+        }
+
+        .hospitalGrid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px
+        }
+
+        .hospitalTop {
+            display: flex;
+            gap: 14px
+        }
+
+        .hospitalIcon {
+            width: 58px;
+            height: 58px;
+            border-radius: 14px;
+            background: #edf7ff;
+            display: grid;
+            place-items: center;
+            font-size: 28px;
+            flex-shrink: 0
+        }
+
+        .rating {
+            color: #a76c00;
+            font-weight: bold;
+            font-size: 13px
+        }
+
+        .distance {
+            color: var(--green);
+            font-weight: bold;
+            font-size: 13px
+        }
+
+        .fullBtn {
+            width: 100%;
+            margin-top: 5px
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 30px
+        }
+
+        .stat {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 22px;
+            text-align: center;
+            border-radius: 15px
+        }
+
+        .stat strong {
+            font-size: 30px;
+            color: var(--green);
+            display: block
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        .updates {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px
+        }
+
+        .update {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 18px;
+            display: flex;
+            gap: 13px
+        }
+
+        .updateIcon {
+            width: 45px;
+            height: 45px;
+            background: #fff3d9;
+            border-radius: 11px;
+            display: grid;
+            place-items: center;
+            flex-shrink: 0
+        }
+
+        .update p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 5px;
+            line-height: 1.5
+        }
+
+        footer {
+            background: var(--dark);
+            color: #b7cbd0;
+            padding: 35px 7%;
+            margin-top: 25px
+        }
+
+        .footerIn {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px
+        }
+
+        .footerIn h2 {
+            color: white;
+            margin-bottom: 7px
+        }
+
+        .modalBg {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 3000;
+            background: #0009;
+            align-items: center;
+            justify-content: center;
+            padding: 18px
+        }
+
+        .modal {
+            width: 530px;
+            max-width: 100%;
+            max-height: 92vh;
+            overflow: auto;
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            position: relative;
+            animation: pop .2s ease
+        }
+
+        @keyframes pop {
+            from {
+                transform: scale(.95);
+                opacity: 0
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1
+            }
+        }
+
+        .close {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #eef3f3;
+            font-size: 20px
+        }
+
+        .modal h2 {
+            margin-bottom: 7px
+        }
+
+        .muted {
+            color: var(--muted);
+            line-height: 1.55
+        }
+
+        .form {
+            margin-top: 15px
+        }
+
+        .form label {
+            display: block;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 6px
+        }
+
+        .form input,
+        .form select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d7e5e5;
+            border-radius: 9px;
+            outline: none;
+            background: white
+        }
+
+        .form input:focus,
+        .form select:focus {
+            border-color: var(--green);
+            box-shadow: 0 0 0 3px #087f7612
+        }
+
+        .formRow {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px
+        }
+
+        .submit {
+            width: 100%;
+            margin-top: 17px;
+            padding: 13px;
+            border-radius: 10px;
+            background: var(--green);
+            color: white;
+            font-weight: bold
+        }
+
+        .secondary {
+            width: 100%;
+            margin-top: 10px;
+            padding: 12px;
+            border-radius: 10px;
+            background: #eaf7f5;
+            color: var(--green);
+            font-weight: bold
+        }
+
+        .success {
+            text-align: center;
+            padding: 15px
+        }
+
+        .successCircle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #e2f8f3;
+            color: var(--green);
+            display: grid;
+            place-items: center;
+            font-size: 35px;
+            margin: 0 auto 15px
+        }
+
+        .summary {
+            text-align: left;
+            background: #f0faf8;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 15px;
+            line-height: 1.8;
+            font-size: 14px
+        }
+
+        .profileBox {
+            background: #f0faf8;
+            border: 1px solid var(--border);
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 15px;
+            line-height: 1.8
+        }
+
+        .empty {
+            text-align: center;
+            padding: 30px;
+            color: var(--muted)
+        }
+
+        .toast {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 5000;
+            background: #07343c;
+            color: white;
+            padding: 14px 18px;
+            border-radius: 10px;
+            display: none;
+            box-shadow: 0 10px 30px #0003
+        }
+
+        @media(max-width:850px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto
+            }
+
+            .actions {
+                justify-content: center
+            }
+
+            .grid {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .hospitalGrid {
+                grid-template-columns: 1fr
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+
+        @media(max-width:600px) {
+            nav {
+                padding: 0 4%
+            }
+
+            .navlinks {
+                display: none
+            }
+
+            .hero {
+                padding: 55px 5%
+            }
+
+            .heroVisual {
+                height: 300px
+            }
+
+            .grid,
+            .updates,
+            .stats {
+                grid-template-columns: 1fr
+            }
+
+            section.content {
+                width: 92%
+            }
+
+            .searchBox {
+                width: 92%
+            }
+
+            .formRow {
+                grid-template-columns: 1fr
+            }
+
+            .footerIn {
+                flex-direction: column
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">
+            <div class="logoBox">✚</div>
+            MediSense
+        </div>
+
+        <div class="navlinks">
+            <a href="#home">Home</a>
+            <a href="#schemes">Schemes</a>
+            <a href="#hospitals">Hospitals</a>
+            <a href="#updates">Updates</a>
+
+            <a href="#" class="login" onclick="handleLoginButton();return false">
+                Login
+            </a>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+
+        <div>
+            <span class="badge">🏥 SMART HEALTHCARE PLATFORM</span>
+
+            <h1>
+                Healthcare made
+                <span>Simple.</span>
+            </h1>
+
+            <p>
+                MediSense helps users discover healthcare schemes,
+                find hospitals where schemes are accepted and
+                request hospital appointments from one platform.
+            </p>
+
+            <div class="actions">
+                <button class="btn primary" onclick="scrollToSection('schemes')">
+                    Explore Schemes →
+                </button>
+
+                <button class="btn outline" onclick="scrollToSection('hospitals')">
+                    📍 Find Hospitals
+                </button>
+            </div>
+        </div>
+
+        <div class="heroVisual">
+            <div class="float a">✓ Scheme Information</div>
+            <div class="float b">📍 Hospital Finder</div>
+            <div class="float c">📅 Appointment</div>
+            <div class="heart">❤️</div>
+        </div>
+
+    </section>
+
+    <div class="searchBox">
+        <input id="search" placeholder="Search scheme, hospital or treatment..." oninput="searchEverything()">
+
+        <button class="btn primary" onclick="searchEverything()">
+            Search
+        </button>
+    </div>
+
+    <section class="content" id="schemes">
+
+        <div class="heading">
+            <h2>Healthcare Schemes</h2>
+            <p>Popular Indian public healthcare programmes — demo information for this prototype.</p>
+        </div>
+
+        <div class="grid">
+
+            <div class="card searchable">
+                <div class="icon">🩺</div>
+                <h3>Ayushman Bharat PM-JAY</h3>
+                <p>Eligible beneficiaries ke liye publicly funded health assurance programme.</p>
+
+                <div class="benefit">
+                    <b>Coverage</b>
+                    Eligible families ke liye up to ₹5 lakh per family per year.
+                </div>
+
+                <div class="tags">
+                    <span class="tag">Hospitalisation</span>
+                    <span class="tag">Cashless</span>
+                    <span class="tag">Empanelled Hospitals</span>
+                </div>
+
+                <button class="btn primary" onclick="schemeDetails(
+'Ayushman Bharat PM-JAY',
+'Eligible beneficiaries ke liye health assurance programme.',
+'Up to ₹5 lakh per family per year'
+)">
+                    View Details
+                </button>
+            </div>
+
+            <div class="card searchable">
+                <div class="icon">👩‍⚕️</div>
+                <h3>Ayushman Arogya Mandir</h3>
+                <p>Primary healthcare services ko communities ke closer provide karne ka public health initiative.</p>
+
+                <div class="benefit">
+                    <b>Focus</b>
+                    Comprehensive primary healthcare services.
+                </div>
+
+                <div class="tags">
+                    <span class="tag">Primary Care</span>
+                    <span class="tag">Prevention</span>
+                    <span class="tag">Wellness</span>
+                </div>
+
+                <button class="btn primary" onclick="schemeDetails(
+'Ayushman Arogya Mandir',
+'Primary healthcare services ko communities ke closer provide karne ka initiative.',
+'Comprehensive primary healthcare'
+)">
+                    View Details
+                </button>
+            </div>
+
+            <div class="card searchable">
+                <div class="icon">💊</div>
+                <h3>Pradhan Mantri Bhartiya Janaushadhi</h3>
+                <p>Affordable generic medicines ko promote karne wala government programme.</p>
+
+                <div class="benefit">
+                    <b>Focus</b>
+                    Quality generic medicines at affordable prices.
+                </div>
+
+                <div class="tags">
+                    <span class="tag">Generic Medicines</span>
+                    <span class="tag">Affordable</span>
+                </div>
+
+                <button class="btn primary" onclick="schemeDetails(
+'Pradhan Mantri Bhartiya Janaushadhi',
+'Affordable generic medicines ko promote karne wala programme.',
+'Affordable generic medicines'
+)">
+                    View Details
+                </button>
+            </div>
+
+            <div class="card searchable">
+                <div class="icon">❤️</div>
+                <h3>National Health Mission</h3>
+                <p>Public health systems aur healthcare services ko strengthen karne ka national mission.</p>
+
+                <div class="benefit">
+                    <b>Focus</b>
+                    Accessible and equitable healthcare services.
+                </div>
+
+                <div class="tags">
+                    <span class="tag">Public Health</span>
+                    <span class="tag">Healthcare Services</span>
+                </div>
+
+                <button class="btn primary" onclick="schemeDetails(
+'National Health Mission',
+'Public healthcare systems ko strengthen karne ka national mission.',
+'Accessible healthcare services'
+)">
+                    View Details
+                </button>
+            </div>
+
+            <div class="card searchable">
+                <div class="icon">👶</div>
+                <h3>Janani Shishu Suraksha Karyakram</h3>
+                <p>Public health facilities me maternal and child health services ko support karta hai.</p>
+
+                <div class="benefit">
+                    <b>Focus</b>
+                    Maternal and child healthcare support.
+                </div>
+
+                <div class="tags">
+                    <span class="tag">Maternal Care</span>
+                    <span class="tag">Child Health</span>
+                </div>
+
+                <button class="btn primary" onclick="schemeDetails(
+'Janani Shishu Suraksha Karyakram',
+'Maternal and child healthcare support programme.',
+'Maternal & child health support'
+)">
+                    View Details
+                </button>
+            </div>
+
+            <div class="card searchable">
+                <div class="icon">🧓</div>
+                <h3>National Programme for Health Care of Elderly</h3>
+                <p>Older adults ke healthcare needs ko support karne ke liye public health programme.</p>
+
+                <div class="benefit">
+                    <b>Focus</b>
+                    Healthcare services for elderly people.
+                </div>
+
+                <div class="tags">
+                    <span class="tag">Elderly Care</span>
+                    <span class="tag">Public Health</span>
+                </div>
+
+                <button class="btn primary" onclick="schemeDetails(
+'National Programme for Health Care of Elderly',
+'Older adults ke healthcare needs ko support karta hai.',
+'Elderly healthcare support'
+)">
+                    View Details
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="content" id="hospitals">
+
+        <div class="heading">
+            <h2>Nearby Hospitals</h2>
+            <p>Demo hospital network for hackathon presentation.</p>
+        </div>
+
+        <div class="hospitalGrid">
+
+            <div class="card searchable">
+                <div class="hospitalTop">
+                    <div class="hospitalIcon">🏥</div>
+                    <div>
+                        <h3>LifeCare Multispeciality Hospital</h3>
+                        <p>Multispeciality • Emergency</p>
+                        <span class="rating">⭐ 4.8</span>
+                        &nbsp;
+                        <span class="distance">📍 1.8 km</span>
+                    </div>
+                </div>
+
+                <div class="tags">
+                    <span class="tag">PM-JAY</span>
+                    <span class="tag">General Medicine</span>
+                    <span class="tag">Cardiology</span>
+                </div>
+
+                <button class="btn primary fullBtn" onclick="openBooking('LifeCare Multispeciality Hospital')">
+                    📅 Book Appointment
+                </button>
+            </div>
+
+            <div class="card searchable">
+                <div class="hospitalTop">
+                    <div class="hospitalIcon">🏥</div>
+                    <div>
+                        <h3>Sunrise City Hospital</h3>
+                        <p>Multispeciality • Diagnostics</p>
+                        <span class="rating">⭐ 4.7</span>
+                        &nbsp;
+                        <span class="distance">📍 3.2 km</span>
+                    </div>
+                </div>
+
+                <div class="tags">
+                    <span class="tag">PM-JAY</span>
+                    <span class="tag">Diagnostics</span>
+                    <span class="tag">Orthopaedics</span>
+                </div>
+
+                <button class="btn primary fullBtn" onclick="openBooking('Sunrise City Hospital')">
+                    📅 Book Appointment
+                </button>
+            </div>
+
+            <div class="card searchable">
+                <div class="hospitalTop">
+                    <div class="hospitalIcon">🏥</div>
+                    <div>
+                        <h3>Shree Arogya Hospital</h3>
+                        <p>General Hospital • Pharmacy</p>
+                        <span class="rating">⭐ 4.6</span>
+                        &nbsp;
+                        <span class="distance">📍 4.4 km</span>
+                    </div>
+                </div>
+
+                <div class="tags">
+                    <span class="tag">PM-JAY</span>
+                    <span class="tag">General Medicine</span>
+                </div>
+
+                <button class="btn primary fullBtn" onclick="openBooking('Shree Arogya Hospital')">
+                    📅 Book Appointment
+                </button>
+            </div>
+
+            <div class="card searchable">
+                <div class="hospitalTop">
+                    <div class="hospitalIcon">🏥</div>
+                    <div>
+                        <h3>CityCare Medical Centre</h3>
+                        <p>Primary Care • Diagnostics</p>
+                        <span class="rating">⭐ 4.5</span>
+                        &nbsp;
+                        <span class="distance">📍 5.1 km</span>
+                    </div>
+                </div>
+
+                <div class="tags">
+                    <span class="tag">Primary Care</span>
+                    <span class="tag">Diagnostics</span>
+                </div>
+
+                <button class="btn primary fullBtn" onclick="openBooking('CityCare Medical Centre')">
+                    📅 Book Appointment
+                </button>
+            </div>
+
+        </div>
+
+        <div class="stats">
+
+            <div class="stat">
+                <strong>6+</strong>
+                <span>Scheme Categories</span>
+            </div>
+
+            <div class="stat">
+                <strong>4</strong>
+                <span>Demo Hospitals</span>
+            </div>
+
+            <div class="stat">
+                <strong>24/7</strong>
+                <span>Information Access</span>
+            </div>
+
+            <div class="stat">
+                <strong>3</strong>
+                <span>Booking Steps</span>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="content" id="updates">
+
+        <div class="heading">
+            <h2>Latest Updates</h2>
+            <p>Platform updates and healthcare information.</p>
+        </div>
+
+        <div class="updates">
+
+            <div class="update">
+                <div class="updateIcon">🔔</div>
+                <div>
+                    <h3>Scheme Information</h3>
+                    <p>Scheme information ko regularly verify aur update karne ke liye platform designed hai.</p>
+                </div>
+            </div>
+
+            <div class="update">
+                <div class="updateIcon">🏥</div>
+                <div>
+                    <h3>Hospital Network</h3>
+                    <p>Hospitals ke scheme availability data ko centralized dashboard se update kiya ja sakta hai.</p>
+                </div>
+            </div>
+
+            <div class="update">
+                <div class="updateIcon">📅</div>
+                <div>
+                    <h3>Appointment Booking</h3>
+                    <p>User hospital, department, date aur time select karke appointment request submit kar sakta hai.
+                    </p>
+                </div>
+            </div>
+
+            <div class="update">
+                <div class="updateIcon">🔎</div>
+                <div>
+                    <h3>Smart Search</h3>
+                    <p>Scheme aur hospital names search karke relevant cards filter kiye ja sakte hain.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="footerIn">
+
+            <div>
+                <h2>✚ MediSense</h2>
+                <p>Smart access to healthcare information.</p>
+            </div>
+
+            <div>
+                <p>Hackathon Working Prototype</p>
+                <small>Hospital data shown here is demo/sample data.</small>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <!-- SCHEME MODAL -->
+
+    <div class="modalBg" id="schemeModal">
+
+        <div class="modal">
+
+            <button class="close" onclick="closeModal('schemeModal')">
+                ×
+            </button>
+
+            <span class="badge">Healthcare Scheme</span>
+
+            <h2 id="schemeTitle"></h2>
+
+            <p class="muted" id="schemeDescription"></p>
+
+            <div class="benefit">
+                <b>Benefit / Focus</b>
+                <span id="schemeBenefit"></span>
+            </div>
+
+            <h3>🏥 Demo Available Hospitals</h3>
+
+            <div class="tags">
+                <span class="tag">LifeCare Hospital</span>
+                <span class="tag">Sunrise City Hospital</span>
+                <span class="tag">Shree Arogya Hospital</span>
+            </div>
+
+            <button class="submit" onclick="closeModal('schemeModal');scrollToSection('hospitals')">
+                Find Hospitals →
+            </button>
+
+        </div>
+    </div>
+
+
+    <!-- LOGIN MODAL -->
+
+    <div class="modalBg" id="loginModal">
+
+        <div class="modal">
+
+            <button class="close" onclick="closeModal('loginModal')">
+                ×
+            </button>
+
+            <span class="badge">👤 MEDISENSE ACCOUNT</span>
+
+            <h2 id="loginTitle">Login to MediSense</h2>
+
+            <p class="muted" id="loginSubtitle">
+                Login to book appointments and manage your information.
+            </p>
+
+            <div id="loginForm">
+
+                <div class="form">
+                    <label>Email</label>
+                    <input id="loginEmail" type="email" placeholder="you@example.com">
+                </div>
+
+                <div class="form">
+                    <label>Password</label>
+                    <input id="loginPassword" type="password" placeholder="Enter password">
+                </div>
+
+                <button class="submit" onclick="loginUser()">
+                    Login
+                </button>
+
+                <button class="secondary" onclick="showRegister()">
+                    Create New Account
+                </button>
+
+            </div>
+
+
+            <div id="registerForm" style="display:none">
+
+                <div class="form">
+                    <label>Full Name</label>
+                    <input id="registerName" type="text" placeholder="Enter your full name">
+                </div>
+
+                <div class="form">
+                    <label>Email</label>
+                    <input id="registerEmail" type="email" placeholder="you@example.com">
+                </div>
+
+                <div class="form">
+                    <label>Mobile Number</label>
+                    <input id="registerMobile" type="tel" maxlength="10" placeholder="10 digit mobile number">
+                </div>
+
+                <div class="form">
+                    <label>Password</label>
+                    <input id="registerPassword" type="password" placeholder="Create password">
+                </div>
+
+                <div class="form">
+                    <label>Confirm Password</label>
+                    <input id="registerConfirm" type="password" placeholder="Confirm password">
+                </div>
+
+                <button class="submit" onclick="registerUser()">
+                    Submit Registration →
+                </button>
+
+                <button class="secondary" onclick="showLogin()">
+                    ← Back to Login
+                </button>
+
+            </div>
+
+
+            <div id="profileView" style="display:none">
+
+                <div class="successCircle">✓</div>
+
+                <h2>Welcome!</h2>
+
+                <p class="muted">
+                    You are logged in to your MediSense account.
+                </p>
+
+                <div class="profileBox">
+
+                    <b>👤 Name:</b>
+                    <span id="profileName"></span>
+                    <br>
+
+                    <b>📧 Email:</b>
+                    <span id="profileEmail"></span>
+                    <br>
+
+                    <b>📱 Mobile:</b>
+                    <span id="profileMobile"></span>
+
+                </div>
+
+                <button class="submit" onclick="closeModal('loginModal')">
+                    Continue to MediSense
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- BOOKING MODAL -->
+
+    <div class="modalBg" id="bookingModal">
+
+        <div class="modal">
+
+            <button class="close" onclick="closeModal('bookingModal')">
+                ×
+            </button>
+
+
+            <div id="bookingForm">
+
+                <span class="badge">📅 APPOINTMENT BOOKING</span>
+
+                <h2>Book Appointment</h2>
+
+                <p class="muted" id="hospitalName"></p>
+
+
+                <div class="form">
+                    <label>Patient Name</label>
+                    <input id="patientName" placeholder="Enter full name">
+                </div>
+
+
+                <div class="form">
+                    <label>Mobile Number</label>
+                    <input id="mobile" type="tel" maxlength="10" placeholder="10 digit mobile number">
+                </div>
+
+
+                <div class="form">
+                    <label>Age</label>
+                    <input id="patientAge" type="number" min="1" max="120" placeholder="Enter age">
+                </div>
+
+
+                <div class="form">
+                    <label>Select Scheme</label>
+
+                    <select id="schemeSelect">
+
+                        <option>Ayushman Bharat PM-JAY</option>
+                        <option>Ayushman Arogya Mandir</option>
+                        <option>Pradhan Mantri Bhartiya Janaushadhi</option>
+                        <option>National Health Mission</option>
+                        <option>No Scheme / Self Pay</option>
+
+                    </select>
+                </div>
+
+
+                <div class="form">
+                    <label>Department</label>
+
+                    <select id="department">
+
+                        <option>General Medicine</option>
+                        <option>Cardiology</option>
+                        <option>Orthopaedics</option>
+                        <option>Paediatrics</option>
+                        <option>Dermatology</option>
+
+                    </select>
+                </div>
+
+
+                <div class="formRow">
+
+                    <div class="form">
+                        <label>Date</label>
+                        <input id="date" type="date">
+                    </div>
+
+                    <div class="form">
+                        <label>Time</label>
+
+                        <select id="time">
+
+                            <option>10:00 AM</option>
+                            <option>11:30 AM</option>
+                            <option>01:00 PM</option>
+                            <option>03:30 PM</option>
+                            <option>05:00 PM</option>
+
+                        </select>
+                    </div>
+
+                </div>
+
+
+                <button class="submit" onclick="confirmAppointment()">
+                    Submit & Confirm Appointment →
+                </button>
+
+            </div>
+
+
+            <div id="bookingSuccess" class="success" style="display:none">
+
+                <div class="successCircle">✓</div>
+
+                <h2>Appointment Confirmed!</h2>
+
+                <p class="muted">
+                    Your appointment information has been submitted successfully.
+                </p>
+
+                <div class="summary">
+
+                    <b>🏥 Hospital:</b>
+                    <span id="sHospital"></span>
+                    <br>
+
+                    <b>👤 Patient:</b>
+                    <span id="sPatient"></span>
+                    <br>
+
+                    <b>📱 Mobile:</b>
+                    <span id="sMobile"></span>
+                    <br>
+
+                    <b>🎂 Age:</b>
+                    <span id="sAge"></span>
+                    <br>
+
+                    <b>🩺 Department:</b>
+                    <span id="sDepartment"></span>
+                    <br>
+
+                    <b>📅 Date:</b>
+                    <span id="sDate"></span>
+                    <br>
+
+                    <b>⏰ Time:</b>
+                    <span id="sTime"></span>
+                    <br>
+
+                    <b>💳 Scheme:</b>
+                    <span id="sScheme"></span>
+                    <br>
+
+                    <b>🆔 Booking ID:</b>
+                    <span id="bookingId"></span>
+
+                </div>
+
+                <button class="submit" onclick="closeModal('bookingModal')">
+                    Done
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- VIEW APPOINTMENT MODAL -->
+
+    <div class="modalBg" id="appointmentModal">
+
+        <div class="modal">
+
+            <button class="close" onclick="closeModal('appointmentModal')">
+                ×
+            </button>
+
+            <span class="badge">📋 MY APPOINTMENT</span>
+
+            <h2>Appointment Details</h2>
+
+            <div id="appointmentDetails"></div>
+
+            <button class="submit" onclick="closeModal('appointmentModal')">
+                Close
+            </button>
+
+        </div>
+    </div>
+
+
+    <div class="toast" id="toast"></div>
+
+
+    <script>
+
+        let selectedHospital = "";
+
+
+        /* SCROLL */
+
+        function scrollToSection(id) {
+
+            document.getElementById(id).scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }
+
+
+        /* SEARCH */
+
+        function searchEverything() {
+
+            const value =
+                document.getElementById("search")
+                    .value.toLowerCase()
+                    .trim();
+
+            const items =
+                document.querySelectorAll(".searchable");
+
+            items.forEach(item => {
+
+                const text =
+                    item.innerText.toLowerCase();
+
+                item.style.display =
+                    text.includes(value) ? "" : "none";
+
+            });
+
+            if (value !== "") {
+                showToast("Search results updated");
+            }
+
+        }
+
+
+        /* SCHEME DETAILS */
+
+        function schemeDetails(title, description, benefit) {
+
+            document.getElementById("schemeTitle").innerText = title;
+
+            document.getElementById("schemeDescription").innerText =
+                description;
+
+            document.getElementById("schemeBenefit").innerText =
+                benefit;
+
+            document.getElementById("schemeModal").style.display =
+                "flex";
+
+        }
+
+
+        /* LOGIN BUTTON */
+
+        function handleLoginButton() {
+
+            const user =
+                JSON.parse(localStorage.getItem("mediSenseUser"));
+
+            if (user) {
+
+                document.getElementById("profileName").innerText =
+                    user.name;
+
+                document.getElementById("profileEmail").innerText =
+                    user.email;
+
+                document.getElementById("profileMobile").innerText =
+                    user.mobile;
+
+                document.getElementById("loginForm").style.display =
+                    "none";
+
+                document.getElementById("registerForm").style.display =
+                    "none";
+
+                document.getElementById("profileView").style.display =
+                    "block";
+
+                document.getElementById("loginModal").style.display =
+                    "flex";
+
+            } else {
+
+                showLogin();
+
+                document.getElementById("loginModal").style.display =
+                    "flex";
+
+            }
+
+        }
+
+
+        /* SHOW LOGIN */
+
+        function showLogin() {
+
+            document.getElementById("loginTitle").innerText =
+                "Login to MediSense";
+
+            document.getElementById("loginSubtitle").innerText =
+                "Login to book appointments and manage your information.";
+
+            document.getElementById("loginForm").style.display =
+                "block";
+
+            document.getElementById("registerForm").style.display =
+                "none";
+
+            document.getElementById("profileView").style.display =
+                "none";
+
+        }
+
+
+        /* SHOW REGISTER */
+
+        function showRegister() {
+
+            document.getElementById("loginTitle").innerText =
+                "Create MediSense Account";
+
+            document.getElementById("loginSubtitle").innerText =
+                "Enter your information and submit the registration form.";
+
+            document.getElementById("loginForm").style.display =
+                "none";
+
+            document.getElementById("registerForm").style.display =
+                "block";
+
+            document.getElementById("profileView").style.display =
+                "none";
+
+        }
+
+
+        /* REGISTER */
+
+        function registerUser() {
+
+            const name =
+                document.getElementById("registerName").value.trim();
+
+            const email =
+                document.getElementById("registerEmail").value.trim();
+
+            const mobile =
+                document.getElementById("registerMobile").value.trim();
+
+            const password =
+                document.getElementById("registerPassword").value;
+
+            const confirm =
+                document.getElementById("registerConfirm").value;
+
+
+            if (name === "") {
+                alert("Please enter your full name.");
+                return;
+            }
+
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                alert("Please enter a valid email.");
+                return;
+            }
+
+            if (!/^[0-9]{10}$/.test(mobile)) {
+                alert("Please enter a valid 10 digit mobile number.");
+                return;
+            }
+
+            if (password.length < 4) {
+                alert("Password must contain at least 4 characters.");
+                return;
+            }
+
+            if (password !== confirm) {
+                alert("Passwords do not match.");
+                return;
+            }
+
+
+            const user = {
+                name: name,
+                email: email,
+                mobile: mobile,
+                password: password
+            };
+
+
+            localStorage.setItem(
+                "mediSenseAccount",
+                JSON.stringify(user)
+            );
+
+            localStorage.setItem(
+                "mediSenseUser",
+                JSON.stringify(user)
+            );
+
+
+            updateNavbar();
+
+            showToast("Account created successfully!");
+
+            handleLoginButton();
+
+        }
+
+
+        /* LOGIN */
+
+        function loginUser() {
+
+            const email =
+                document.getElementById("loginEmail").value.trim();
+
+            const password =
+                document.getElementById("loginPassword").value;
+
+
+            const account =
+                JSON.parse(localStorage.getItem("mediSenseAccount"));
+
+
+            if (!account) {
+
+                alert("No account found. Please create an account first.");
+
+                showRegister();
+
+                return;
+            }
+
+
+            if (email !== account.email) {
+
+                alert("Email does not match the registered account.");
+
+                return;
+            }
+
+
+            if (password !== account.password) {
+
+                alert("Incorrect password.");
+
+                return;
+            }
+
+
+            localStorage.setItem(
+                "mediSenseUser",
+                JSON.stringify(account)
+            );
+
+
+            updateNavbar();
+
+            showToast("Login successful!");
+
+            handleLoginButton();
+
+        }
+
+
+        /* NAVBAR */
+
+        function updateNavbar() {
+
+            const user =
+                JSON.parse(localStorage.getItem("mediSenseUser"));
+
+            const loginButton =
+                document.querySelector(".login");
+
+
+            if (user) {
+
+                loginButton.innerText =
+                    "👤 " + user.name;
+
+            } else {
+
+                loginButton.innerText =
+                    "Login";
+
+            }
+
+        }
+
+
+        /* BOOKING */
+
+        function openBooking(hospital) {
+
+            const user =
+                JSON.parse(localStorage.getItem("mediSenseUser"));
+
+
+            if (!user) {
+
+                alert("Please login first to book an appointment.");
+
+                showLogin();
+
+                document.getElementById("loginModal").style.display =
+                    "flex";
+
+                return;
+
+            }
+
+
+            selectedHospital = hospital;
+
+
+            document.getElementById("hospitalName").innerText =
+                "Hospital: " + hospital;
+
+
+            document.getElementById("bookingForm").style.display =
+                "block";
+
+            document.getElementById("bookingSuccess").style.display =
+                "none";
+
+
+            document.getElementById("bookingModal").style.display =
+                "flex";
+
+
+            document.getElementById("date").min =
+                new Date().toISOString().split("T")[0];
+
+
+            /* AUTO FILL LOGGED USER */
+
+            document.getElementById("patientName").value =
+                user.name;
+
+            document.getElementById("mobile").value =
+                user.mobile;
+
+        }
+
+
+        /* CONFIRM APPOINTMENT */
+
+        function confirmAppointment() {
+
+            const user =
+                JSON.parse(localStorage.getItem("mediSenseUser"));
+
+
+            if (!user) {
+
+                alert("Please login first.");
+                return;
+
+            }
+
+
+            const name =
+                document.getElementById("patientName").value.trim();
+
+            const mobile =
+                document.getElementById("mobile").value.trim();
+
+            const age =
+                document.getElementById("patientAge").value.trim();
+
+            const date =
+                document.getElementById("date").value;
+
+            const department =
+                document.getElementById("department").value;
+
+            const time =
+                document.getElementById("time").value;
+
+            const scheme =
+                document.getElementById("schemeSelect").value;
+
+
+            if (name === "") {
+                alert("Please enter patient name.");
+                return;
+            }
+
+            if (!/^[0-9]{10}$/.test(mobile)) {
+                alert("Please enter a valid 10 digit mobile number.");
+                return;
+            }
+
+            if (age === "" || age < 1 || age > 120) {
+                alert("Please enter a valid age.");
+                return;
+            }
+
+            if (date === "") {
+                alert("Please select appointment date.");
+                return;
+            }
+
+
+            const bookingId =
+                "MS" + Math.floor(100000 + Math.random() * 900000);
+
+
+            const appointment = {
+
+                bookingId: bookingId,
+                hospital: selectedHospital,
+                patient: name,
+                mobile: mobile,
+                age: age,
+                department: department,
+                date: date,
+                time: time,
+                scheme: scheme,
+                email: user.email
+
+            };
+
+
+            localStorage.setItem(
+                "mediSenseAppointment",
+                JSON.stringify(appointment)
+            );
+
+
+            /* SHOW SUMMARY */
+
+            document.getElementById("sHospital").innerText =
+                selectedHospital;
+
+            document.getElementById("sPatient").innerText =
+                name;
+
+            document.getElementById("sMobile").innerText =
+                mobile;
+
+            document.getElementById("sAge").innerText =
+                age;
+
+            document.getElementById("sDepartment").innerText =
+                department;
+
+            document.getElementById("sDate").innerText =
+                date;
+
+            document.getElementById("sTime").innerText =
+                time;
+
+            document.getElementById("sScheme").innerText =
+                scheme;
+
+            document.getElementById("bookingId").innerText =
+                bookingId;
+
+
+            document.getElementById("bookingForm").style.display =
+                "none";
+
+            document.getElementById("bookingSuccess").style.display =
+                "block";
+
+
+            showToast("Appointment submitted successfully!");
+
+        }
+
+
+        /* VIEW APPOINTMENT */
+
+        function viewAppointment() {
+
+            const appointment =
+                JSON.parse(localStorage.getItem("mediSenseAppointment"));
+
+
+            if (!appointment) {
+
+                alert("No appointment found. Please book an appointment first.");
+                return;
+
+            }
+
+
+            document.getElementById("appointmentDetails").innerHTML = `
+
+<div class="profileBox">
+
+<b>🆔 Booking ID:</b>
+${appointment.bookingId}
+<br>
+
+<b>🏥 Hospital:</b>
+${appointment.hospital}
+<br>
+
+<b>👤 Patient:</b>
+${appointment.patient}
+<br>
+
+<b>📱 Mobile:</b>
+${appointment.mobile}
+<br>
+
+<b>🎂 Age:</b>
+${appointment.age}
+<br>
+
+<b>🩺 Department:</b>
+${appointment.department}
+<br>
+
+<b>📅 Date:</b>
+${appointment.date}
+<br>
+
+<b>⏰ Time:</b>
+${appointment.time}
+<br>
+
+<b>💳 Scheme:</b>
+${appointment.scheme}
+
+</div>
+
+`;
+
+            document.getElementById("appointmentModal").style.display =
+                "flex";
+
+        }
+
+
+        /* LOGOUT */
+
+        function logoutUser() {
+
+            localStorage.removeItem("mediSenseUser");
+
+            updateNavbar();
+
+            showToast("Logged out successfully!");
+
+        }
+
+
+        /* MODAL */
+
+        function closeModal(id) {
+
+            document.getElementById(id).style.display =
+                "none";
+
+        }
+
+
+        /* TOAST */
+
+        function showToast(message) {
+
+            const toast =
+                document.getElementById("toast");
+
+            toast.innerText =
+                message;
+
+            toast.style.display =
+                "block";
+
+            setTimeout(() => {
+                toast.style.display = "none";
+            }, 2500);
+
+        }
+
+
+        /* OUTSIDE CLICK */
+
+        window.addEventListener("click", function (e) {
+
+            if (e.target.classList.contains("modalBg")) {
+                e.target.style.display = "none";
+            }
+
+        });
+
+
+        /* ADD VIEW APPOINTMENT LINK */
+
+        function addAppointmentButton() {
+
+            const user =
+                JSON.parse(localStorage.getItem("mediSenseUser"));
+
+            const navlinks =
+                document.querySelector(".navlinks");
+
+            if (user) {
+
+                if (!document.getElementById("myAppointmentLink")) {
+
+                    const link =
+                        document.createElement("a");
+
+                    link.id =
+                        "myAppointmentLink";
+
+                    link.href = "#";
+
+                    link.innerText = "📋 My Appointment";
+
+                    link.onclick = function () {
+
+                        viewAppointment();
+
+                        return false;
+
+                    };
+
+                    navlinks.insertBefore(
+                        link,
+                        document.querySelector(".login")
+                    );
+
+                }
+
+            }
+
+        }
+
+
+        /* START */
+
+        updateNavbar();
+        addAppointmentButton();
+
+    </script>
+
+</body>
+
+</html>
